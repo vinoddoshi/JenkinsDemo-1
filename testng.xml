@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suit name="JenkinsDemo">
+
+<test name="Registration" preserve-order="false">
+  <classes>
+ 
+    <class name="com.jenkins.test.SaveDelegateTest">
+      <methods>
+        <include name="saveUsersTest" />
+        <include name="anotherTest" />
+      </methods>
+    </class>
+ 
+ 
+  </classes>
+</test>
+
+</suit>
