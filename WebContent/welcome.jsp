@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@page import="com.jenkins.demo.SaveDelegate"%>
+<%@page import="com.jenkins.demo.UserDelegate"%>
 <%@page import="java.util.List"%>
 <%@page import="com.jenkins.demo.Users"%>
 <html>
@@ -37,15 +37,19 @@
 				<td>Phone No</td>
 				<td>Email Id</td>
 				<td>Country</td>
+				<td>Actions</td>
 			</tr>
-			<%List<Users> usersList = SaveDelegate.usersList; 
-		    for(Users user : usersList) { %>
+			<%
+			  List<Users> usersList = UserDelegate.usersList; 
+					    for(Users user : usersList) {
+			%>
 			<tr>
 				<td><%=user.getName() %></td>
 				<td><%=user.getAddress() %></td>
 				<td><%=user.getPhoneNo() %></td>
 				<td><%=user.getEmailId() %></td>
 				<td><%=user.getCountry() %></td>
+				<td><a href="deleteUser?id=<%=user.getId() %>">Delete</a></td>
 			</tr>
 			<%} %>
 		</table>

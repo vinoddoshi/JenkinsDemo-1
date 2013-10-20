@@ -1,19 +1,29 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suit name="JenkinsDemo">
+<suite name="JenkinsDemo">
+	<test name="Registration" preserve-order="false">
+		<classes>
+			<class name="com.jenkins.test.UserDelegateTest">
+<!-- 				<methods> -->
+<!-- 					<include name="saveUsersTest" /> -->
+				
+<!-- 				</methods> -->
+			</class>
+		</classes>
+	</test>
+	
+	
+	<test name="SeleniumTests" preserve-order="false">
+		<classes>
+			<class name="com.jenkins.guiTest.Index">
+			<methods>
+				<include name="fillForm"></include>
+				<include name="selectCountry"></include>
+				<include name="submitForm"></include>
+			</methods>
+			</class>
+		</classes>
+	</test>	
+	
+</suite>
 
-<test name="Registration" preserve-order="false">
-  <classes>
- 
-    <class name="com.jenkins.test.SaveDelegateTest">
-      <methods>
-        <include name="saveUsersTest" />
-        <include name="anotherTest" />
-      </methods>
-    </class>
- 
- 
-  </classes>
-</test>
-
-</suit>

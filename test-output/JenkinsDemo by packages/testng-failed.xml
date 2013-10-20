@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [JenkinsDemo by packages]">
+  <test name="com.jenkins.*(failed)">
+    <classes>
+      <class name="com.jenkins.guiTest.Index">
+        <methods>
+          <include name="exit"/>
+          <include name="selectCountry"/>
+          <include name="init"/>
+          <include name="submitForm"/>
+          <include name="fillForm"/>
+        </methods>
+      </class> <!-- com.jenkins.guiTest.Index -->
+    </classes>
+  </test> <!-- com.jenkins.*(failed) -->
+</suite> <!-- Failed suite [JenkinsDemo by packages] -->

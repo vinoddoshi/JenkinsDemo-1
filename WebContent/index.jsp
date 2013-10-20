@@ -5,12 +5,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
 <title>Jenkins Demo</title>
 </head>
+
 <body style="background-color:rgba(0, 112, 255, 0.17)">
 	<div style='padding-left:300px;'>
 		<h1>Meet Jenkins</h1>
-		<h4>Fill the following information to register yourself to
-			jenkins.</h4>
-		<form name='demoForm' action='/JenkinsDemo/SaveUserList' method="get">
+		<h4>Fill the following information to register yourself for jenkins demo.</h4>
+		<form name='demoForm' action='SaveUserList' method="post">
 			<table>
 				<tr>
 					<td>Name:</td>
@@ -30,10 +30,11 @@
 				</tr>
 				<tr>
 					<td>Country:</td>
-					<td><select><option id="optCountry" name="optCountry">India</option>
+					<td>
+					<select><option id="optCountry" name="optCountry">India</option>
 							<option>United States</option>
 							<option>Canada</option>
-							<option>Australia</option>
+							<option value="Australia"> Australia </option>
 							<option>England</option>
 							<option>Germany</option>
 							<option>France</option>
@@ -41,7 +42,7 @@
 				</tr>
 				<tr>
 					<td></td>
-					<td><input type='submit'/></td>
+					<td><input id="btnSubmit" type='submit' value="Register"/></td>
 				</tr>
 			</table>
 		</form>

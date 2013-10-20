@@ -25,16 +25,29 @@ public class SaveUserList extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	  String name = request.getParameter("txtName") != null ? request.getParameter("txtName") : "";
 	  String address = request.getParameter("txtAddress") != null ? request.getParameter("txtAddress") : "";;
 	  String phoneNo = request.getParameter("txtPhoneNo") != null ? request.getParameter("txtPhoneNo"): "";;
 	  String emailId = request.getParameter("txtEmailId") != null ? request.getParameter("txtEmailId") : "";;
 	  String country = request.getParameter("optCountry") != null ? request.getParameter("optCountry") : "";;
 	  
-	  SaveDelegate delegate = new SaveDelegate();
+	  UserDelegate delegate = new UserDelegate();
 	  delegate.saveUsers(name,address,phoneNo,emailId,country);
 	  
 	  response.sendRedirect("welcome.jsp");
+	}
+	
+	public boolean testCoverage(int i) {
+	  if(i > 1) {
+	    return true;
+	  } else {
+	    return false;
+	  }
+	}
+	
+	public static void main(String args[]) {
+	  SaveUserList list = new SaveUserList();
+	  list.testCoverage(2);
 	}
 }

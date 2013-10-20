@@ -1,11 +1,31 @@
 <?xml version="1.0" ?> 
 <project name="JenkinsDemo" default="war">
 
-	<path id="compile.classpath">
-		<fileset dir="WebContent/WEB-INF/lib">
-			<include name="*.jar"/>
-		</fileset>
+	<path id="classpath.test">
+	       <fileset dir="lib">
+	         <include name="SeleniumJars/*.jar" />
+	      </fileset>
+	      <pathelement location="test" />
+	      <pathelement location="src" />
+	      <pathelement location="/Users/pavang/Documents/workspace/JenkinsDemo/lib/testng-6.8.jar"/> 
+		  <pathelement location="/Users/pavang/Documents/workspace/JenkinsDemo/lib"/>
+		  <pathelement location="/Users/pavang/Desktop/apache-tomcat-7.0.42/lib/servlet-api.jar"/>
+		
+	      <pathelement location="/Users/pavang/Documents/workspace/JenkinsDemo/build/classes"/>
 	</path>
+
+	
+	<taskdef name="testng" classname="org.testng.TestNGAntTask">
+		    <classpath>
+		      <pathelement location="/Users/pavang/Documents/workspace/JenkinsDemo/lib/testng-6.8.jar"/> 
+		    </classpath>
+	</taskdef>
+	
+
+
+<!-- _________________________________________________________________________________ -->	 
+	
+
 	
 	<target name="init">
 		<mkdir dir="build/classes"/>
@@ -14,7 +34,13 @@
 	
 	<target name="compile" depends="init" >
 		<javac destdir="build/classes" debug="true" srcdir="src">
-			<classpath refid="compile.classpath"/>
+			<classpath refid="classpath.test"/>
+		</javac>
+		<javac destdir="build/classes" debug="true" srcdir="test">
+					<classpath refid="classpath.test"/>
+		</javac>
+		<javac destdir="build/classes" debug="true" srcdir="guiTest">
+				<classpath refid="classpath.test"/>
 		</javac>
 	</target>
 	
@@ -22,7 +48,7 @@
 		<war destfile="dist/JenkinsDemo.war" needxmlfile='false'>
 			<fileset dir="WebContent"/>
 			<lib dir="WebContent/WEB-INF/lib"/>
-			<classes dir="build/classes"/>
+			<classes dir="build/classes"/>  
 		</war>
 	</target>
 	
@@ -30,23 +56,73 @@
 		<delete dir="dist" />
 		<delete dir="build" />
 	</target>
+		
 	
-	<target name="runGuiTest">
-		
-	<!--	<classpath> 
-		<pathelement location="/Users/pavang/Documents/untitled folder/eclipse/plugins/org.testng.eclipse_6.8.6.20130607_0745/lib/testng-sources.jar">
-		</pathelement>
-		</classpath>
-		
-		       <testng classpath="${build.dir}" outputdir="$test-output.dir}" haltOnfailure="false" verbose="2">
-		
-	-->		
-		
-		<testng classpath ="${test.classpath}:${build.dir}" outputdir="$test-output.dir}">
-			<xmlfileset dir="${ws.home}" includes="testng.xml" />
-       </testng>
-			
-	
+	<target name="runTest" depends="war">
+			<testng classpathref="classpath.test">
+					<xmlfileset dir="." includes="testng.xml"/>
+				</testng>
 	</target>
-	
 </project>
+
+
+
+
+
+
+<!-- 
+<path id="testNGRun">
+			<pathelement location="/Users/pavang/Documents/workspace/JenkinsDemo/testng-6.8.jar"/>
+			<pathelement location="/Users/pavang/Documents/workspace/JenkinsDemo/build" />
+	</path>
+			
+    <taskdef name="testng" classpathref="testNGRun" classname="org.testng.TestNGAntTask" />   
+    
+     <taskdef name="testng" classname="org.testng.TestNGAntTask">
+	    <classpath>
+	      <pathelement location="lib/testng/testng-5.14.7.jar"/>
+	    </classpath>
+	  </taskdef>
+	  
+	  
+	  <taskdef name="testngtasks" resource="testngtasks" >
+	     <classpath>
+	          <pathelement path="/Users/
+	          pavang/Documents/workspace/JenkinsDemo/testng.jar"/>
+	     </classpath>
+	</taskdef>
+	
+	
+	<fileset dir="lib">
+	    <include name="**/*.jar"/>
+	</fileset>
+
+    <path id="classpath.test">
+        <pathelement path="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/bin/"/>
+        <pathelement path="${toString:testng.classpath}" />                      
+	    <pathelement path="/Users/pavang/Documents/workspace/JenkinsDemo/testng.jar"/>
+	    <pathelement path="${classes.dir}"/> 
+    	
+    </path>
+		<taskdef resource="testngtasks" classpath="testng.jar"/> 
+	    <pathelement location="/Users/pavang/Downloads/jcommander-1.13.jar"/>
+	
+	
+	<taskdef name="jcommander" classname="com.beust.jcommander.ParameterException">
+		    <classpath>
+		      <pathelement location="/Users/pavang/Documents/workspace/JenkinsDemo/lib/jcommander.jar"/> 
+		    </classpath>
+	</taskdef>
+		      <path refid="classpath.base" />
+		      
+		      
+   <emma enabled="${emma.enabled}" >
+	      <instr instrpathref="${out.dir}/classes"
+	             outdir="${out.dir}/classes-instrumented"
+	             merge="yes"
+	             filter="${emma.filter}"
+	      />
+	    </emma>
+   
+	
+-->
