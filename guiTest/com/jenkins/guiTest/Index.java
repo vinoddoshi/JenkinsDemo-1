@@ -35,8 +35,8 @@ public class Index {
   
   @Test
   public void selectCountry(){
-    Select country = new Select(driver.findElement(By.id("optCountry")));
-    country.selectByIndex(1);
+    //Select country = new Select(driver.findElement(By.id("optCountry")));
+    //country.selectByIndex(1);
     //country.selectByValue("Australia");
     driver.findElement(By.id("optCountry")).click();
     
