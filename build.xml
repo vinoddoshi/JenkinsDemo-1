@@ -7,17 +7,17 @@
 	      </fileset>
 	      <pathelement location="test" />
 	      <pathelement location="src" />
-	      <pathelement location="/Users/pavang/Documents/workspace/JenkinsDemo/lib/testng-6.8.jar"/> 
-		  <pathelement location="/Users/pavang/Documents/workspace/JenkinsDemo/lib"/>
-		  <pathelement location="/Users/pavang/Desktop/apache-tomcat-7.0.42/lib/servlet-api.jar"/>
+	      <pathelement location="lib/testng-6.8.jar"/> 
+		  <pathelement location="lib"/>
+		  <pathelement location="lib/servlet-api.jar"/>
 		
-	      <pathelement location="/Users/pavang/Documents/workspace/JenkinsDemo/build/classes"/>
+	      <pathelement location="build/classes"/>
 	</path>
 
 	
 	<taskdef name="testng" classname="org.testng.TestNGAntTask">
 		    <classpath>
-		      <pathelement location="/Users/pavang/Documents/workspace/JenkinsDemo/lib/testng-6.8.jar"/> 
+		      <pathelement location="lib/testng-6.8.jar"/> 
 		    </classpath>
 	</taskdef>
 	
@@ -30,6 +30,7 @@
 	<target name="init">
 		<mkdir dir="build/classes"/>
 		<mkdir dir="dist" />
+		<mkdir dir="WebContent/WEB-INF/lib"/>
 	</target>
 	
 	<target name="compile" depends="init" >
